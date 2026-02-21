@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sequential Digital Circuit FSM — Project Portfolio</title>
-  <meta name="description" content="Portfolio site for a sequential digital circuit design project: JK flip-flop FSM that cycles through a student-number digit sequence on a 7‑segment display." />
+  <meta name="description" content="Portfolio site for a sequential digital circuit design project: JK flip-flop FSM that cycles through a custom digit sequence on a 7‑segment display." />
   <style>
     :root{
       --bg:#0b1020; --card:#111a33; --muted:#98a2b3; --text:#e6e9ef;
@@ -91,7 +91,6 @@
     section{padding:18px 0}
     .section-title{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0 0 10px}
     h2{margin:0; font-size:22px; letter-spacing:-.01em}
-    .hint{color:var(--muted); font-size:13px}
 
     .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
     @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
@@ -161,7 +160,7 @@
         <div class="card">
           <h1>Sequential FSM for 7‑Segment Digit Cycling</h1>
           <p class="sub">
-            Designed and implemented a JK flip‑flop finite‑state machine (FSM) that repeatedly displays the digits of a student number on a 7‑segment display using BCD storage plus extra counter bits for repeated digits.
+            Designed and implemented a JK flip‑flop finite‑state machine (FSM) that repeatedly displays the digits of a custom sequence on a 7‑segment display using BCD storage plus extra counter bits for repeated digits.
           </p>
 
           <div class="meta">
@@ -180,16 +179,13 @@
         <aside class="card">
           <div class="section-title">
             <h2 style="font-size:18px; margin:0">Project snapshot</h2>
-            <span class="hint">Edit these</span>
+            
           </div>
-          <div class="kpi">
-            <div class="row"><span>State bits used</span><b>Q2–Q4 + C5–C6</b></div>
+          <div class="kpi"><div class="row"><span>State bits used</span><b>Q2–Q4 + C5–C6</b></div>
             <div class="row"><span>Decoder</span><b>74LS48 / 4511</b></div>
             <div class="row"><span>Clock</span><b>~5 Hz</b></div>
           </div>
-          <p class="hint" style="margin:12px 0 0">
-           
-          </p>
+          
         </aside>
       </div>
     </header>
@@ -197,7 +193,7 @@
     <section id="overview">
       <div class="section-title">
         <h2>Overview</h2>
-        <span class="hint">Problem, goal, and high‑level approach</span>
+        
       </div>
       <div class="grid-2">
         <div class="card">
@@ -230,7 +226,7 @@
     <section id="method">
       <div class="section-title">
         <h2>Method</h2>
-        <span class="hint">From excitation table → K‑maps → minimized logic</span>
+        
       </div>
       <div class="card">
         <div class="timeline">
@@ -276,7 +272,7 @@
     <section id="logic">
       <div class="section-title">
         <h2>Logic Highlights</h2>
-        <span class="hint">What got simplified and why it matters</span>
+        
       </div>
       <div class="grid-2">
         <div class="card">
@@ -300,7 +296,7 @@
             Use asynchronous set/reset pins to force the initial BCD + counter combination (e.g., set one bit high and clear the rest).
             After releasing the button, the FSM resumes normal clocked transitions.
           </p>
-          <p class="hint" style="margin:10px 0 0">Replace the bullet values below with your exact initial-state forcing.</p>
+          
           <ul class="clean">
             <li>Set: <code class="inline">Q2</code> → 1</li>
             <li>Reset: <code class="inline">Q3, Q4, C5, C6</code> → 0</li>
@@ -312,37 +308,32 @@
     <section id="results">
       <div class="section-title">
         <h2>Results</h2>
-        <span class="hint">Screenshots + what the outputs show</span>
+        
       </div>
 
       <div class="grid-2">
         <div class="card">
           <h3 style="margin:0 0 8px; font-size:15px">Multisim schematic</h3>
-          <div class="figure">
-            <b>Add your schematic image</b>
-            <small>
-              Replace this box with an <code class="inline">&lt;img&gt;</code> of your Multisim circuit (or a photo of your breadboard).
-              Suggested filename: <code class="inline">schematic.png</code>
-            </small>
+          <div class="figure" style="padding:0; overflow:hidden;">
+            <img src="multisim.png" alt="Multisim schematic" style="width:100%; height:auto; display:block;" />
           </div>
+          
+          
+        </div>
 
         <div class="card">
           <h3 style="margin:0 0 8px; font-size:15px">Timing diagram</h3>
-          <div class="figure">
-            <b>Add your timing diagram</b>
-            <small>
-              Include Q2/Q3/Q4/C5/C6 waveforms that demonstrate the digit cycle.
-              Suggested filename: <code class="inline">timing.png</code>
-            </small>
+          <div class="figure" style="padding:0; overflow:hidden;">
+            <img src="digital.png" alt="Digital timing diagram" style="width:100%; height:auto; display:block;" />
           </div>
-          <p class="hint" style="margin:10px 0 0">Explain how counter bits toggle on repeated digits while BCD changes only when the digit changes.</p>
+          
         </div>
       </div>
 
       <div class="card" style="margin-top:16px">
         <div class="section-title" style="margin-bottom:6px">
           <h2 style="font-size:18px">What worked (quick summary)</h2>
-          <span class="hint">Make it yours</span>
+          
         </div>
         <ul class="clean">
           <li>The FSM cycles through the full digit sequence and returns to the start state.</li>
@@ -355,7 +346,7 @@
     <section id="build">
       <div class="section-title">
         <h2>Build Notes</h2>
-        <span class="hint">Parts list, wiring tips, and lessons learned</span>
+        
       </div>
       <div class="grid-2">
         <div class="card">
@@ -386,15 +377,15 @@
           If you recorded a demo, embed it here (YouTube/Drive) or link it as a button.
         </p>
         <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
-          <a class="btn" href="#" onclick="alert('https://mcmasteru365-my.sharepoint.com/:v:/g/personal/abdulmab_mcmaster_ca/IQBWgjCHcgKeR6lps0tLei5LAQT8IefwnxH-MqwJ2gs4I8Y?e=uzucr1&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJUZWFtcyIsInJlZmVycmFsTW9kZSI6Im1pcyIsInJlZmVycmFsVmlldyI6InZpZGVvYWN0aW9ucy1zaGFyZSIsInJlZmVycmFsUGxheWJhY2tTZXNzaW9uSWQiOiJmN2RkZTc5OC0yYzdlLTQxODEtYTMwYi0zNjIxMDk1OWFlMjgifX0%3D'); return false;">▶ Demo link</a>
-
+          <a class="btn" href="https://mcmasteru365-my.sharepoint.com/:v:/g/personal/abdulmab_mcmaster_ca/IQBWgjCHcgKeR6lps0tLei5LAePkgMHZfG3U4v-tspmR04k?e=ZEZqK3&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJUZWFtcyIsInJlZmVycmFsTW9kZSI6Im1pcyIsInJlZmVycmFsVmlldyI6InZpZGVvYWN0aW9ucy1zaGFyZSIsInJlZmVycmFsUGxheWJhY2tTZXNzaW9uSWQiOiJmN2RkZTc5OC0yYzdlLTQxODEtYTMwYi0zNjIxMDk1OWFlMjgifX0%3D" target="_blank" rel="noreferrer">▶ Demo video</a>
+          <a class="btn" href="#" onclick="alert('Replace this with your report PDF link!'); return false;">📄 Report PDF</a>
         </div>
       </div>
     </section>
 
     <footer>
       <div class="footer-row">
-        <div>© <span id="year"></span> • Basmalah • Digital Design Portfolio</div>
+        <div>© <span id="year"></span> • Your Name • Digital Design Portfolio</div>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
           <a class="pill" href="#overview">Back to top</a>
           <a class="pill" href="mailto:you@example.com">Contact</a>
@@ -446,3 +437,4 @@
   </script>
 </body>
 </html>
+
