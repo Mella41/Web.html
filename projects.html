@@ -3,9 +3,6 @@
 <head>
   <!-- =========================================================
        BASIC PAGE SETTINGS (browser + SEO)
-       - charset: allows symbols/emoji and standard text encoding
-       - viewport: makes  the page responsive on phones
-       - description: helps search engines + link previews
        ========================================================= -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -15,60 +12,48 @@
   <style>
     /* =========================================================
        THEME VARIABLES (AESTHETIC GREEN / BEIGE / BROWN)
-       These are "CSS variables" you can reuse anywhere.
-       If you want to change the whole vibe, change only these.
        ========================================================= */
     :root{
-      --bg:#f7f3ea;           /* page background (beige) */
-      --card:#fffaf0;         /* card background (slightly lighter beige) */
-      --text:#2a241f;         /* main text color (dark brown) */
-      --muted:#6a5f55;        /* secondary text color (soft brown/grey) */
-      --line: rgba(42,36,31,.12);  /* thin border lines */
+      --bg:#f7f3ea;
+      --card:#fffaf0;
+      --text:#2a241f;
+      --muted:#6a5f55;
+      --line: rgba(42,36,31,.12);
 
-      --green:#2f5e4e;        /* main accent green */
-      --sage:#7c9a86;         /* softer green */
-      --brown:#6b4f3a;        /* accent brown */
-      --gold:#c9a86a;         /* warm gold accent */
+      --green:#2f5e4e;
+      --sage:#7c9a86;
+      --brown:#6b4f3a;
+      --gold:#c9a86a;
 
-      --shadow: 0 18px 50px rgba(42,36,31,.10); /* soft shadow */
-      --radius:18px;          /* rounded corners */
-      --max:1100px;           /* max page width */
+      --shadow: 0 18px 50px rgba(42,36,31,.10);
+      --radius:18px;
+      --max:1100px;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
-    /* =========================================================
-       GLOBAL STYLES (apply everywhere)
-       ========================================================= */
-    *{box-sizing:border-box} /* prevents padding from breaking widths */
+    *{box-sizing:border-box}
 
     body{
       margin:0;
       font-family:var(--sans);
-
-      /* Background gradient layers for a "soft aesthetic" look */
       background:
         radial-gradient(900px 500px at 15% 0%, rgba(47,94,78,.18), transparent 60%),
         radial-gradient(800px 450px at 95% 10%, rgba(201,168,106,.14), transparent 55%),
         var(--bg);
-
       color:var(--text);
     }
 
-    /* All links inherit the current text color (so they match theme) */
     a{color:inherit}
 
-    /* Center the page and add padding around content */
     .wrap{
       max-width:var(--max);
       margin:0 auto;
-      padding:24px 18px 70px; /* top / sides / bottom */
+      padding:24px 18px 70px;
     }
 
     /* =========================================================
-       NAVBAR (top sticky header)
-       - Sticky: stays visible while scrolling
-       - Backdrop blur: creates a “frosted glass” effect
+       NAVBAR
        ========================================================= */
     .nav{
       position:sticky;
@@ -78,8 +63,6 @@
       background: color-mix(in oklab, var(--bg) 80%, transparent);
       border-bottom:1px solid var(--line);
     }
-
-    /* Navbar inner layout (aligns logo left, links right) */
     .nav-inner{
       max-width:var(--max);
       margin:0 auto;
@@ -89,16 +72,12 @@
       justify-content:space-between;
       gap:12px;
     }
-
-    /* Brand area (logo + your name) */
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
       text-decoration:none;
     }
-
-    /* Small gradient square used as a "logo" */
     .logo{
       width:38px;
       height:38px;
@@ -106,19 +85,14 @@
       background: linear-gradient(135deg, var(--green), var(--gold));
       box-shadow: var(--shadow);
     }
-
-    /* Brand text styling */
     .brand strong{font-size:14px}
     .brand span{display:block; font-size:12px; color:var(--muted)}
-
-    /* Right-side links in navbar */
     .links{
       display:flex;
       align-items:center;
       gap:10px;
       flex-wrap:wrap;
     }
-
     .links a{
       text-decoration:none;
       font-size:13px;
@@ -126,15 +100,13 @@
       padding:8px 10px;
       border-radius:12px;
     }
-
-    /* Hover highlight on nav links */
     .links a:hover{
       background: color-mix(in oklab, var(--green) 12%, transparent);
       color:var(--text);
     }
 
     /* =========================================================
-       PAGE HEADER (top intro box)
+       PAGE HEADER
        ========================================================= */
     .page-head{
       margin-top: 14px;
@@ -144,39 +116,52 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
     }
+    h1{ margin:0 0 8px; font-size:34px; }
+    .muted{ color:var(--muted); line-height:1.75; font-size:14px; }
 
-    h1{
-      margin:0 0 8px;
-      font-size:34px;
+    /* =========================================================
+       TABLE OF CONTENTS (quick jump)
+       ========================================================= */
+    .toc{
+      margin-top: 14px;
+      padding: 16px 18px;
+      border:1px solid var(--line);
+      background: color-mix(in oklab, var(--card) 90%, transparent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
     }
-
-    /* Muted text (used for descriptions + secondary details) */
-    .muted{
+    .toc a{
+      text-decoration:none;
+      font-size:13px;
       color:var(--muted);
-      line-height:1.75;
-      font-size:14px;
+      border:1px solid var(--line);
+      padding:8px 10px;
+      border-radius:999px;
+      background: color-mix(in oklab, var(--bg) 55%, transparent);
+    }
+    .toc a:hover{
+      border-color: color-mix(in oklab, var(--green) 35%, var(--line));
+      color:var(--text);
     }
 
     /* =========================================================
-       PROJECT SECTION CONTAINER
-       - Each project is a "big card" with:
-         1) top info area
-         2) embedded Notion page below
+       PROJECT CONTAINER
        ========================================================= */
     .project{
-      margin-top: 14px;
+      margin-top: 18px;
       border:1px solid var(--line);
       background: color-mix(in oklab, var(--card) 92%, transparent);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-
-      /* Important: keeps iframe corners rounded (prevents square edges) */
       overflow:hidden;
     }
 
-    /* Top portion of each project (title/desc left, buttons right) */
     .project-top{
-      padding: 18px 18px 12px;
+      padding: 18px 18px 14px;
       display:flex;
       justify-content:space-between;
       gap:12px;
@@ -184,21 +169,14 @@
       align-items:flex-start;
     }
 
-    /* Project title style */
-    .title{
-      font-size:18px;
-      margin:0 0 6px;
-    }
+    .title{ font-size:18px; margin:0 0 6px; }
 
-    /* Row of tags like “Accessibility / Prototyping” */
     .tagrow{
       display:flex;
       flex-wrap:wrap;
       gap:8px;
       margin-top:10px;
     }
-
-    /* Each tag bubble */
     .tag{
       font-size:12px;
       color: var(--muted);
@@ -208,7 +186,6 @@
       background: color-mix(in oklab, var(--bg) 55%, transparent);
     }
 
-    /* Buttons area on the right side of each project */
     .actions{
       display:flex;
       gap:10px;
@@ -217,7 +194,6 @@
       justify-content:flex-end;
     }
 
-    /* Button style used for links */
     .btn{
       text-decoration:none;
       display:inline-flex;
@@ -231,38 +207,73 @@
       font-weight:700;
       font-size:13px;
     }
-
-    /* Primary button (green gradient) */
     .btn.primary{
       border:none;
       background: linear-gradient(135deg, var(--green), var(--sage));
       color:white;
     }
-
-    /* Subtle hover lift effect */
     .btn:hover{transform: translateY(-1px);}
 
     /* =========================================================
-       NOTION EMBED AREA
-       - iframe displays your Notion page directly inside your site
-       - If Notion embed is blocked, user can still click “Open in Notion”
+       PRETTY EMBED FALLBACK
+       - Instead of showing the ugly grey iframe error box,
+         we show a nice “preview” panel + buttons.
        ========================================================= */
+    .preview{
+      border-top:1px solid var(--line);
+      padding: 16px 18px 18px;
+      background: color-mix(in oklab, var(--bg) 48%, transparent);
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .notice{
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px dashed color-mix(in oklab, var(--brown) 45%, var(--line));
+      background: color-mix(in oklab, var(--card) 75%, transparent);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Collapsible area for “Try embed anyway” */
+    details{
+      border:1px solid var(--line);
+      border-radius: 16px;
+      background: color-mix(in oklab, var(--card) 85%, transparent);
+      overflow:hidden;
+    }
+    summary{
+      cursor:pointer;
+      padding: 12px 14px;
+      font-weight: 700;
+      color: color-mix(in oklab, var(--text) 85%, var(--muted));
+      list-style:none;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    summary:after{
+      content:"▾";
+      float:right;
+      color: var(--muted);
+    }
+    details[open] summary:after{ content:"▴"; }
+
     .embed-wrap{
-      border-top:1px solid var(--line); /* separates description from embed */
+      border-top:1px solid var(--line);
       background: color-mix(in oklab, var(--bg) 45%, transparent);
     }
 
     .embed{
       width:100%;
-      height: 760px; /* adjust this to make embed taller/shorter */
-      border:0;      /* removes default iframe border */
-      display:block; /* removes extra inline spacing */
+      height: 720px;
+      border:0;
+      display:block;
       background: transparent;
     }
-
-    /* Mobile: reduce embed height so it's not too huge */
     @media (max-width: 700px){
-      .embed{ height: 640px; }
+      .embed{ height: 560px; }
     }
 
     /* =========================================================
@@ -279,22 +290,14 @@
       flex-wrap:wrap;
       gap:10px;
     }
-
-    .small-link{
-      color:var(--muted);
-      text-decoration:none;
-    }
-    .small-link:hover{color:var(--text)}
+    .small-link{ color:var(--muted); text-decoration:none; }
+    .small-link:hover{ color:var(--text); }
   </style>
 </head>
 
 <body>
-  <!-- =========================================================
-       NAVBAR HTML
-       ========================================================= -->
   <div class="nav">
     <div class="nav-inner">
-      <!-- Left side: logo + name. Clicking takes you back home -->
       <a class="brand" href="index.html">
         <div class="logo" aria-hidden="true"></div>
         <div>
@@ -303,7 +306,6 @@
         </div>
       </a>
 
-      <!-- Right side: navigation links -->
       <div class="links">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
@@ -312,36 +314,35 @@
   </div>
 
   <main class="wrap">
-    <!-- =========================================================
-         PAGE HEADER / INTRO TEXT
-         ========================================================= -->
     <section class="page-head">
       <h1>Projects</h1>
       <p class="muted">
-        Here are some projects I’ve worked on. Each one includes a short summary and an embedded write-up
-        so you can scroll through the details right here.
+        Here are some projects I’ve worked on. For Notion pages: Notion sometimes blocks embedding, so I’ve added a clean preview + buttons.
       </p>
       <p class="muted" style="margin:0;">
-        If an embed doesn’t load, use the “Open in Notion” button (it will always work).
+        Use “Open in Notion ↗” to view the full write-up anytime.
       </p>
     </section>
+
+    <!-- Quick jump pills -->
+    <nav class="toc" aria-label="Projects table of contents">
+      <span class="muted" style="margin-right:6px;">Jump to:</span>
+      <a href="#vibration-bracelet">Doorbell Bracelet</a>
+      <a href="#airport">1P13 Airport</a>
+      <a href="#water-filtration">Water Filtration</a>
+      <a href="#sequential-circuit">Sequential Digital Circuit</a>
+    </nav>
 
     <!-- =========================================================
          PROJECT 1: Vibrational Doorbell Bracelet
          ========================================================= -->
     <section class="project" id="vibration-bracelet">
-      <!-- TOP INFO BAR (title + summary + buttons) -->
       <div class="project-top">
-        <!-- LEFT: title + short description + tags -->
         <div>
           <h2 class="title">Vibrational Doorbell Bracelet</h2>
-
-          <!-- Short description: what the project is in 1–2 sentences -->
           <p class="muted" style="margin:0;">
             Designed a compact, lightweight vibrating wristband that alerts a user when a doorbell rings—focused on accessibility, comfort, and ease of use.
           </p>
-
-          <!-- Tags: quick scanning keywords -->
           <div class="tagrow">
             <span class="tag">Accessibility</span>
             <span class="tag">Prototyping</span>
@@ -350,12 +351,8 @@
           </div>
         </div>
 
-        <!-- RIGHT: action buttons -->
         <div class="actions">
-          <!-- Optional: if you have a detailed page in your repo, link it here -->
           <a class="btn primary" href="projects/doorbell-bracelet.html">My detailed page →</a>
-
-          <!-- Always available: open the Notion page in a new tab -->
           <a class="btn" target="_blank" rel="noreferrer"
              href="https://tricolor-cheek-cfb.notion.site/Vibrational-Doorbell-Bracelet-1ceae3e1c1e5808d8f97ebb4048442e3?source=copy_link">
             Open in Notion ↗
@@ -363,14 +360,20 @@
         </div>
       </div>
 
-      <!-- NOTION EMBED: shows the page contents without clicking -->
-      <div class="embed-wrap">
-        <iframe
-          class="embed"
-          loading="lazy"
-          src="https://tricolor-cheek-cfb.notion.site/Vibrational-Doorbell-Bracelet-1ceae3e1c1e5808d8f97ebb4048442e3?embed=1"
-          title="Vibrational Doorbell Bracelet Notion embed">
-        </iframe>
+      <div class="preview">
+        <div class="notice">
+          <strong>Heads up:</strong> Notion often blocks embedded pages (you’ll see “refused to connect”).
+          This is normal. Use <strong>Open in Notion ↗</strong> above to view the write-up.
+        </div>
+
+        <details>
+          <summary>Try embedded view (may be blocked)</summary>
+          <div class="embed-wrap">
+            <iframe class="embed" loading="lazy"
+              src="https://tricolor-cheek-cfb.notion.site/Vibrational-Doorbell-Bracelet-1ceae3e1c1e5808d8f97ebb4048442e3?embed=1"
+              title="Vibrational Doorbell Bracelet Notion embed"></iframe>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -384,7 +387,6 @@
           <p class="muted" style="margin:0;">
             A systems/design project centered on planning, organization, and engineering decision-making—structured as a realistic airport build with clear deliverables.
           </p>
-
           <div class="tagrow">
             <span class="tag">Systems thinking</span>
             <span class="tag">Design project</span>
@@ -401,13 +403,19 @@
         </div>
       </div>
 
-      <div class="embed-wrap">
-        <iframe
-          class="embed"
-          loading="lazy"
-          src="https://tricolor-cheek-cfb.notion.site/1P13-International-Airport-16fae3e1c1e581158e91d20ce0c010cf?embed=1"
-          title="1P13 International Airport Notion embed">
-        </iframe>
+      <div class="preview">
+        <div class="notice">
+          <strong>Note:</strong> If the embedded view is blocked, click <strong>Open in Notion ↗</strong>.
+        </div>
+
+        <details>
+          <summary>Try embedded view (may be blocked)</summary>
+          <div class="embed-wrap">
+            <iframe class="embed" loading="lazy"
+              src="https://tricolor-cheek-cfb.notion.site/1P13-International-Airport-16fae3e1c1e581158e91d20ce0c010cf?embed=1"
+              title="1P13 International Airport Notion embed"></iframe>
+          </div>
+        </details>
       </div>
     </section>
 
@@ -421,7 +429,6 @@
           <p class="muted" style="margin:0;">
             Designed a filtration concept with practical constraints in mind (materials, performance, and usability), emphasizing real-world impact and clear engineering tradeoffs.
           </p>
-
           <div class="tagrow">
             <span class="tag">Sustainability</span>
             <span class="tag">Design constraints</span>
@@ -438,19 +445,58 @@
         </div>
       </div>
 
-      <div class="embed-wrap">
-        <iframe
-          class="embed"
-          loading="lazy"
-          src="https://tricolor-cheek-cfb.notion.site/Water-Filtration-System-1caae3e1c1e58011931addd08a5092c7?embed=1"
-          title="Water Filtration System Notion embed">
-        </iframe>
+      <div class="preview">
+        <div class="notice">
+          <strong>Note:</strong> If the embedded view is blocked, click <strong>Open in Notion ↗</strong>.
+        </div>
+
+        <details>
+          <summary>Try embedded view (may be blocked)</summary>
+          <div class="embed-wrap">
+            <iframe class="embed" loading="lazy"
+              src="https://tricolor-cheek-cfb.notion.site/Water-Filtration-System-1caae3e1c1e58011931addd08a5092c7?embed=1"
+              title="Water Filtration System Notion embed"></iframe>
+          </div>
+        </details>
       </div>
     </section>
 
     <!-- =========================================================
-         FOOTER
+         PROJECT 4: Sequential Digital Circuit (NEW)
          ========================================================= -->
+    <section class="project" id="sequential-circuit">
+      <div class="project-top">
+        <div>
+          <h2 class="title">Sequential Digital Circuit</h2>
+          <p class="muted" style="margin:0;">
+            Built a sequential circuit (FSM) using flip-flops and logic design to cycle through a defined digit sequence on a 7-segment display, with verification in simulation and implementation details.
+          </p>
+
+          <div class="tagrow">
+            <span class="tag">Digital Logic</span>
+            <span class="tag">FSM</span>
+            <span class="tag">JK Flip-Flops</span>
+            <span class="tag">7-Segment</span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <!-- This assumes you created the page earlier: projects/digital-fsm-7seg.html -->
+          <a class="btn primary" href="projects/digital-fsm-7seg.html">My detailed page →</a>
+
+          <!-- Optional: If you upload your PDF into the repo, link it here (rename the file if needed) -->
+          <!-- <a class="btn" href="DP_Write-Up_L04_400561020.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a> -->
+        </div>
+      </div>
+
+      <div class="preview">
+        <div class="notice">
+          <strong>Add media here (optional):</strong> If you upload screenshots (schematic, timing diagram) into an <code style="font-family:var(--mono)">assets/</code> folder,
+          I can format them like a clean gallery on this page too.
+        </div>
+      </div>
+    </section>
+
     <footer>
       <div>© <span id="year"></span> Basmalah Abdulmajeed</div>
       <div><a class="small-link" href="index.html">Back to Home ↑</a></div>
@@ -458,10 +504,6 @@
   </main>
 
   <script>
-    /* =========================================================
-       JAVASCRIPT (small helper)
-       - automatically fills in the current year in the footer
-       ========================================================= */
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
