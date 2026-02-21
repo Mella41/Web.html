@@ -1,18 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- =========================================================
-       BASIC PAGE SETTINGS (browser + SEO)
-       ========================================================= -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Projects — Basmalah Abdulmajeed" />
   <title>Projects — Basmalah Abdulmajeed</title>
 
   <style>
-    /* =========================================================
-       THEME VARIABLES (AESTHETIC GREEN / BEIGE / BROWN)
-       ========================================================= */
     :root{
       --bg:#f7f3ea;
       --card:#fffaf0;
@@ -33,7 +27,6 @@
     }
 
     *{box-sizing:border-box}
-
     body{
       margin:0;
       font-family:var(--sans);
@@ -43,7 +36,6 @@
         var(--bg);
       color:var(--text);
     }
-
     a{color:inherit}
 
     .wrap{
@@ -52,9 +44,7 @@
       padding:24px 18px 70px;
     }
 
-    /* =========================================================
-       NAVBAR
-       ========================================================= */
+    /* NAVBAR */
     .nav{
       position:sticky;
       top:0;
@@ -105,77 +95,105 @@
       color:var(--text);
     }
 
-    /* =========================================================
-       PAGE HEADER
-       ========================================================= */
+    /* HEADER */
     .page-head{
       margin-top: 14px;
       padding: 22px;
       border:1px solid var(--line);
       background: color-mix(in oklab, var(--card) 92%, transparent);
-      border-radius: var(--radius);
+      border-radius: 22px;
       box-shadow: var(--shadow);
     }
     h1{ margin:0 0 8px; font-size:34px; }
     .muted{ color:var(--muted); line-height:1.75; font-size:14px; }
 
-    /* =========================================================
-       TABLE OF CONTENTS (quick jump)
-       ========================================================= */
-    .toc{
-      margin-top: 14px;
-      padding: 16px 18px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--card) 90%, transparent);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
+    /* ENVELOPE GRID */
+    .grid{
+      margin-top: 18px;
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
-    .toc a{
-      text-decoration:none;
-      font-size:13px;
-      color:var(--muted);
-      border:1px solid var(--line);
-      padding:8px 10px;
-      border-radius:999px;
-      background: color-mix(in oklab, var(--bg) 55%, transparent);
-    }
-    .toc a:hover{
-      border-color: color-mix(in oklab, var(--green) 35%, var(--line));
-      color:var(--text);
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
     }
 
-    /* =========================================================
-       PROJECT CONTAINER
-       ========================================================= */
-    .project{
-      margin-top: 18px;
-      border:1px solid var(--line);
+    /* ENVELOPE CARD (clickable) */
+    .env{
+      position: relative;
+      display:block;
+      text-decoration:none;
+      border-radius: 26px;
+      border: 1px solid var(--line);
       background: color-mix(in oklab, var(--card) 92%, transparent);
-      border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
+      transition: transform .15s ease, border-color .15s ease;
+      min-height: 220px;
+    }
+    .env:hover{
+      transform: translateY(-2px);
+      border-color: color-mix(in oklab, var(--green) 35%, var(--line));
     }
 
-    .project-top{
-      padding: 18px 18px 14px;
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:flex-start;
+    /* Envelope flap */
+    .env::before{
+      content:"";
+      position:absolute;
+      left:-20%;
+      top:-60%;
+      width:140%;
+      height:140%;
+      background: linear-gradient(135deg,
+        color-mix(in oklab, var(--gold) 65%, var(--card)),
+        color-mix(in oklab, var(--sage) 35%, var(--card))
+      );
+      transform: rotate(8deg);
+      opacity: .55;
     }
 
-    .title{ font-size:18px; margin:0 0 6px; }
+    /* little seal circle */
+    .seal{
+      position:absolute;
+      top:14px;
+      right:14px;
+      width:42px;
+      height:42px;
+      border-radius:999px;
+      border: 1px solid color-mix(in oklab, var(--brown) 25%, var(--line));
+      background: linear-gradient(135deg, var(--green), var(--sage));
+      display:grid;
+      place-items:center;
+      color:white;
+      font-weight:900;
+      box-shadow: 0 12px 30px rgba(47,94,78,.18);
+    }
+
+    /* content area inside envelope */
+    .env-inner{
+      position: relative; /* so it sits above the flap overlay */
+      padding: 18px 18px 16px;
+    }
+
+    .env-title{
+      margin: 0 0 6px;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .env-desc{
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14px;
+      max-width: 66ch;
+    }
 
     .tagrow{
+      margin-top: 12px;
       display:flex;
-      flex-wrap:wrap;
       gap:8px;
-      margin-top:10px;
+      flex-wrap:wrap;
     }
     .tag{
       font-size:12px;
@@ -186,99 +204,25 @@
       background: color-mix(in oklab, var(--bg) 55%, transparent);
     }
 
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-      justify-content:flex-end;
-    }
-
-    .btn{
-      text-decoration:none;
+    .cta{
+      margin-top: 14px;
       display:inline-flex;
       align-items:center;
-      gap:8px;
-      padding:10px 14px;
-      border-radius:14px;
-      border:1px solid var(--line);
-      background: color-mix(in oklab, var(--bg) 55%, transparent);
-      color:var(--text);
-      font-weight:700;
+      gap:10px;
       font-size:13px;
+      color: color-mix(in oklab, var(--green) 75%, var(--text));
     }
-    .btn.primary{
-      border:none;
-      background: linear-gradient(135deg, var(--green), var(--sage));
-      color:white;
-    }
-    .btn:hover{transform: translateY(-1px);}
-
-    /* =========================================================
-       PRETTY EMBED FALLBACK
-       - Instead of showing the ugly grey iframe error box,
-         we show a nice “preview” panel + buttons.
-       ========================================================= */
-    .preview{
-      border-top:1px solid var(--line);
-      padding: 16px 18px 18px;
-      background: color-mix(in oklab, var(--bg) 48%, transparent);
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
+    .cta span{
+      display:inline-grid;
+      place-items:center;
+      width:28px;
+      height:28px;
+      border-radius:999px;
+      background: color-mix(in oklab, var(--green) 18%, transparent);
+      border: 1px solid color-mix(in oklab, var(--green) 25%, var(--line));
+      font-weight:900;
     }
 
-    .notice{
-      padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px dashed color-mix(in oklab, var(--brown) 45%, var(--line));
-      background: color-mix(in oklab, var(--card) 75%, transparent);
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.6;
-    }
-
-    /* Collapsible area for “Try embed anyway” */
-    details{
-      border:1px solid var(--line);
-      border-radius: 16px;
-      background: color-mix(in oklab, var(--card) 85%, transparent);
-      overflow:hidden;
-    }
-    summary{
-      cursor:pointer;
-      padding: 12px 14px;
-      font-weight: 700;
-      color: color-mix(in oklab, var(--text) 85%, var(--muted));
-      list-style:none;
-    }
-    summary::-webkit-details-marker{ display:none; }
-    summary:after{
-      content:"▾";
-      float:right;
-      color: var(--muted);
-    }
-    details[open] summary:after{ content:"▴"; }
-
-    .embed-wrap{
-      border-top:1px solid var(--line);
-      background: color-mix(in oklab, var(--bg) 45%, transparent);
-    }
-
-    .embed{
-      width:100%;
-      height: 720px;
-      border:0;
-      display:block;
-      background: transparent;
-    }
-    @media (max-width: 700px){
-      .embed{ height: 560px; }
-    }
-
-    /* =========================================================
-       FOOTER
-       ========================================================= */
     footer{
       margin-top:22px;
       padding-top:18px;
@@ -305,7 +249,6 @@
           <span>Projects</span>
         </div>
       </a>
-
       <div class="links">
         <a href="index.html">Home</a>
         <a href="projects.html">Projects</a>
@@ -316,31 +259,56 @@
   <main class="wrap">
     <section class="page-head">
       <h1>Projects</h1>
-      <p class="muted">
-        Here are some projects I’ve worked on. For Notion pages: Notion sometimes blocks embedding, so I’ve added a clean preview + buttons.
-      </p>
       <p class="muted" style="margin:0;">
-        Use “Open in Notion ↗” to view the full write-up anytime.
+        Click an “envelope” to open the full project write-up.
       </p>
     </section>
 
-    <!-- Quick jump pills -->
-    <nav class="toc" aria-label="Projects table of contents">
-      <span class="muted" style="margin-right:6px;">Jump to:</span>
-      <a href="#vibration-bracelet">Doorbell Bracelet</a>
-      <a href="#airport">1P13 Airport</a>
-      <a href="#water-filtration">Water Filtration</a>
-      <a href="#sequential-circuit">Sequential Digital Circuit</a>
-    </nav>
+    <section class="grid">
+      <!-- 1) Sequential Digital Circuit (FIRST) -->
+      <a class="env" href="projects/digital-fsm-7seg.html">
+        <div class="seal">✦</div>
+        <div class="env-inner">
+          <h2 class="env-title">Sequential Digital Circuit</h2>
+          <p class="env-desc">
+            Designed an FSM-based sequential circuit (JK flip-flops + logic) to cycle through a digit sequence on a 7-segment display, with simulation verification and implementation details.
+          </p>
+          <div class="tagrow">
+            <span class="tag">Digital Logic</span>
+            <span class="tag">FSM</span>
+            <span class="tag">JK Flip-Flops</span>
+            <span class="tag">7-Segment</span>
+          </div>
+          <div class="cta"><span>→</span> Open project</div>
+        </div>
+      </a>
 
-    <!-- =========================================================
-         PROJECT 1: Vibrational Doorbell Bracelet
-         ========================================================= -->
-    <section class="project" id="vibration-bracelet">
-      <div class="project-top">
-        <div>
-          <h2 class="title">Vibrational Doorbell Bracelet</h2>
-          <p class="muted" style="margin:0;">
+      <!-- 2) Trapped Ion (NEW envelope AFTER) -->
+      <!-- Replace the # with your link when ready (Notion / PDF / new HTML page) -->
+      <a class="env" href="#" title="Add your Trapped Ion link here">
+        <div class="seal">✦</div>
+        <div class="env-inner">
+          <h2 class="env-title">Trapped Ion</h2>
+          <p class="env-desc">
+            (Add a 1–2 sentence description here.) Example: A physics-focused project exploring trapped-ion systems, control methods, or applications in quantum tech.
+          </p>
+          <div class="tagrow">
+            <span class="tag">Physics</span>
+            <span class="tag">Quantum</span>
+            <span class="tag">Experimental</span>
+          </div>
+          <div class="cta"><span>→</span> Open project</div>
+        </div>
+      </a>
+
+      <!-- 3) Vibrational Doorbell Bracelet -->
+      <a class="env"
+         href="https://tricolor-cheek-cfb.notion.site/Vibrational-Doorbell-Bracelet-1ceae3e1c1e5808d8f97ebb4048442e3?source=copy_link"
+         target="_blank" rel="noreferrer">
+        <div class="seal">✦</div>
+        <div class="env-inner">
+          <h2 class="env-title">Vibrational Doorbell Bracelet</h2>
+          <p class="env-desc">
             Designed a compact, lightweight vibrating wristband that alerts a user when a doorbell rings—focused on accessibility, comfort, and ease of use.
           </p>
           <div class="tagrow">
@@ -349,42 +317,18 @@
             <span class="tag">Design constraints</span>
             <span class="tag">Wireless alert</span>
           </div>
+          <div class="cta"><span>↗</span> Open Notion</div>
         </div>
+      </a>
 
-        <div class="actions">
-          <a class="btn primary" href="projects/doorbell-bracelet.html">My detailed page →</a>
-          <a class="btn" target="_blank" rel="noreferrer"
-             href="https://tricolor-cheek-cfb.notion.site/Vibrational-Doorbell-Bracelet-1ceae3e1c1e5808d8f97ebb4048442e3?source=copy_link">
-            Open in Notion ↗
-          </a>
-        </div>
-      </div>
-
-      <div class="preview">
-        <div class="notice">
-          <strong>Heads up:</strong> Notion often blocks embedded pages (you’ll see “refused to connect”).
-          This is normal. Use <strong>Open in Notion ↗</strong> above to view the write-up.
-        </div>
-
-        <details>
-          <summary>Try embedded view (may be blocked)</summary>
-          <div class="embed-wrap">
-            <iframe class="embed" loading="lazy"
-              src="https://tricolor-cheek-cfb.notion.site/Vibrational-Doorbell-Bracelet-1ceae3e1c1e5808d8f97ebb4048442e3?embed=1"
-              title="Vibrational Doorbell Bracelet Notion embed"></iframe>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         PROJECT 2: 1P13 International Airport
-         ========================================================= -->
-    <section class="project" id="airport">
-      <div class="project-top">
-        <div>
-          <h2 class="title">1P13 International Airport</h2>
-          <p class="muted" style="margin:0;">
+      <!-- 4) 1P13 International Airport -->
+      <a class="env"
+         href="https://tricolor-cheek-cfb.notion.site/1P13-International-Airport-16fae3e1c1e581158e91d20ce0c010cf?source=copy_link"
+         target="_blank" rel="noreferrer">
+        <div class="seal">✦</div>
+        <div class="env-inner">
+          <h2 class="env-title">1P13 International Airport</h2>
+          <p class="env-desc">
             A systems/design project centered on planning, organization, and engineering decision-making—structured as a realistic airport build with clear deliverables.
           </p>
           <div class="tagrow">
@@ -393,40 +337,18 @@
             <span class="tag">Teamwork</span>
             <span class="tag">Documentation</span>
           </div>
+          <div class="cta"><span>↗</span> Open Notion</div>
         </div>
+      </a>
 
-        <div class="actions">
-          <a class="btn" target="_blank" rel="noreferrer"
-             href="https://tricolor-cheek-cfb.notion.site/1P13-International-Airport-16fae3e1c1e581158e91d20ce0c010cf?source=copy_link">
-            Open in Notion ↗
-          </a>
-        </div>
-      </div>
-
-      <div class="preview">
-        <div class="notice">
-          <strong>Note:</strong> If the embedded view is blocked, click <strong>Open in Notion ↗</strong>.
-        </div>
-
-        <details>
-          <summary>Try embedded view (may be blocked)</summary>
-          <div class="embed-wrap">
-            <iframe class="embed" loading="lazy"
-              src="https://tricolor-cheek-cfb.notion.site/1P13-International-Airport-16fae3e1c1e581158e91d20ce0c010cf?embed=1"
-              title="1P13 International Airport Notion embed"></iframe>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         PROJECT 3: Water Filtration System
-         ========================================================= -->
-    <section class="project" id="water-filtration">
-      <div class="project-top">
-        <div>
-          <h2 class="title">Water Filtration System</h2>
-          <p class="muted" style="margin:0;">
+      <!-- 5) Water Filtration System -->
+      <a class="env"
+         href="https://tricolor-cheek-cfb.notion.site/Water-Filtration-System-1caae3e1c1e58011931addd08a5092c7?source=copy_link"
+         target="_blank" rel="noreferrer">
+        <div class="seal">✦</div>
+        <div class="env-inner">
+          <h2 class="env-title">Water Filtration System</h2>
+          <p class="env-desc">
             Designed a filtration concept with practical constraints in mind (materials, performance, and usability), emphasizing real-world impact and clear engineering tradeoffs.
           </p>
           <div class="tagrow">
@@ -435,66 +357,9 @@
             <span class="tag">Problem-solving</span>
             <span class="tag">Impact</span>
           </div>
+          <div class="cta"><span>↗</span> Open Notion</div>
         </div>
-
-        <div class="actions">
-          <a class="btn" target="_blank" rel="noreferrer"
-             href="https://tricolor-cheek-cfb.notion.site/Water-Filtration-System-1caae3e1c1e58011931addd08a5092c7?source=copy_link">
-            Open in Notion ↗
-          </a>
-        </div>
-      </div>
-
-      <div class="preview">
-        <div class="notice">
-          <strong>Note:</strong> If the embedded view is blocked, click <strong>Open in Notion ↗</strong>.
-        </div>
-
-        <details>
-          <summary>Try embedded view (may be blocked)</summary>
-          <div class="embed-wrap">
-            <iframe class="embed" loading="lazy"
-              src="https://tricolor-cheek-cfb.notion.site/Water-Filtration-System-1caae3e1c1e58011931addd08a5092c7?embed=1"
-              title="Water Filtration System Notion embed"></iframe>
-          </div>
-        </details>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         PROJECT 4: Sequential Digital Circuit (NEW)
-         ========================================================= -->
-    <section class="project" id="sequential-circuit">
-      <div class="project-top">
-        <div>
-          <h2 class="title">Sequential Digital Circuit</h2>
-          <p class="muted" style="margin:0;">
-            Built a sequential circuit (FSM) using flip-flops and logic design to cycle through a defined digit sequence on a 7-segment display, with verification in simulation and implementation details.
-          </p>
-
-          <div class="tagrow">
-            <span class="tag">Digital Logic</span>
-            <span class="tag">FSM</span>
-            <span class="tag">JK Flip-Flops</span>
-            <span class="tag">7-Segment</span>
-          </div>
-        </div>
-
-        <div class="actions">
-          <!-- This assumes you created the page earlier: projects/digital-fsm-7seg.html -->
-          <a class="btn primary" href="projects/digital-fsm-7seg.html">My detailed page →</a>
-
-          <!-- Optional: If you upload your PDF into the repo, link it here (rename the file if needed) -->
-          <!-- <a class="btn" href="DP_Write-Up_L04_400561020.pdf" target="_blank" rel="noreferrer">Open PDF ↗</a> -->
-        </div>
-      </div>
-
-      <div class="preview">
-        <div class="notice">
-          <strong>Add media here (optional):</strong> If you upload screenshots (schematic, timing diagram) into an <code style="font-family:var(--mono)">assets/</code> folder,
-          I can format them like a clean gallery on this page too.
-        </div>
-      </div>
+      </a>
     </section>
 
     <footer>
