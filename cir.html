@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sequential Digital Circuit FSM — Project Portfolio</title>
+  <meta name="description" content="Portfolio site for a sequential digital circuit design project: JK flip-flop FSM that cycles through a student-number digit sequence on a 7‑segment display." />
+  <style>
+    :root{
+      --bg:#0b1020; --card:#111a33; --muted:#98a2b3; --text:#e6e9ef;
+      --brand:#7c5cff; --brand2:#22c55e; --line:rgba(255,255,255,.10);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max: 1040px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+    [data-theme="light"]{
+      --bg:#f6f7fb; --card:#ffffff; --muted:#475467; --text:#0f172a;
+      --brand:#5b5cff; --brand2:#16a34a; --line:rgba(15,23,42,.12);
+      --shadow: 0 10px 26px rgba(2,6,23,.12);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 10% -10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, rgba(34,197,94,.22), transparent 55%),
+        var(--bg);
+      line-height:1.6;
+    }
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 90px}
+
+    /* Top nav */
+    .nav{
+      position:sticky; top:0; z-index:20;
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{max-width:var(--max); margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow:0 0 0 6px color-mix(in srgb, var(--brand) 20%, transparent)}
+    .links{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
+    .links a{font-size:14px; color:color-mix(in srgb, var(--text) 85%, var(--muted)); padding:7px 10px; border-radius:999px; border:1px solid transparent}
+    .links a:hover{border-color:var(--line); background: color-mix(in srgb, var(--card) 70%, transparent)}
+
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 14px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: color-mix(in srgb, var(--card) 85%, transparent);
+      box-shadow: var(--shadow);
+      cursor:pointer;
+      font-weight:600;
+    }
+    .btn:hover{transform: translateY(-1px)}
+    .btn:active{transform: translateY(0px)}
+    .btn.small{padding:8px 12px; font-size:14px; box-shadow:none}
+    .btn.primary{border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 40%, transparent), color-mix(in srgb, var(--brand2) 25%, transparent));}
+
+    /* Hero */
+    header.hero{padding:34px 0 10px}
+    .hero-grid{display:grid; grid-template-columns: 1.25fr .75fr; gap:16px}
+    @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+
+    .card{
+      background: color-mix(in srgb, var(--card) 92%, transparent);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:18px;
+    }
+
+    h1{margin:0; font-size: clamp(30px, 4vw, 44px); line-height:1.1; letter-spacing:-.02em}
+    .sub{margin:12px 0 0; color: color-mix(in srgb, var(--text) 78%, var(--muted)); font-size:16px}
+    .meta{margin-top:14px; display:flex; flex-wrap:wrap; gap:10px}
+    .pill{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--line); color: color-mix(in srgb, var(--text) 80%, var(--muted)); background: color-mix(in srgb, var(--bg) 60%, transparent)}
+
+    .kpi{display:grid; gap:10px}
+    .kpi .row{display:flex; justify-content:space-between; gap:12px; padding:10px 12px; border-radius:14px; border:1px solid var(--line); background: color-mix(in srgb, var(--bg) 62%, transparent)}
+    .kpi .row b{font-family:var(--mono); font-weight:700}
+    .kpi .row span{color:color-mix(in srgb, var(--text) 70%, var(--muted)); font-size:13px}
+
+    /* Sections */
+    section{padding:18px 0}
+    .section-title{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0 0 10px}
+    h2{margin:0; font-size:22px; letter-spacing:-.01em}
+    .hint{color:var(--muted); font-size:13px}
+
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
+
+    ul.clean{margin:10px 0 0; padding-left:18px}
+    code.inline{font-family:var(--mono); font-size:.95em; padding:.15em .45em; border-radius:10px; border:1px solid var(--line); background: color-mix(in srgb, var(--bg) 65%, transparent)}
+
+    /* Figure placeholders */
+    .figure{
+      border-radius: var(--radius);
+      border:1px dashed color-mix(in srgb, var(--line) 90%, transparent);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 65%, transparent), transparent);
+      padding:16px;
+      min-height: 220px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      gap:10px;
+      text-align:center;
+      color: color-mix(in srgb, var(--text) 70%, var(--muted));
+    }
+    .figure b{color: color-mix(in srgb, var(--text) 90%, var(--muted));}
+    .figure small{max-width:520px}
+
+    /* Timeline */
+    .timeline{display:grid; gap:10px; margin-top:10px}
+    .step{display:grid; grid-template-columns: 34px 1fr; gap:12px; padding:12px; border-radius:16px; border:1px solid var(--line); background: color-mix(in srgb, var(--bg) 60%, transparent)}
+    .num{width:34px; height:34px; border-radius:12px; display:grid; place-items:center; font-weight:800; background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 30%, transparent), color-mix(in srgb, var(--brand2) 18%, transparent)); border:1px solid color-mix(in srgb, var(--line) 70%, transparent)}
+    .step p{margin:0; color: color-mix(in srgb, var(--text) 78%, var(--muted));}
+    .step h3{margin:0 0 4px; font-size:15px}
+
+    /* Footer */
+    footer{margin-top:24px; padding-top:18px; border-top:1px solid var(--line); color:var(--muted); font-size:13px}
+    .footer-row{display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap}
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      *{scroll-behavior:auto !important; transition:none !important;}
+      .btn:hover{transform:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>Digital Design Project</span>
+      </div>
+
+      <div class="links" aria-label="Section navigation">
+        <a href="#overview">Overview</a>
+        <a href="#method">Method</a>
+        <a href="#logic">Logic</a>
+        <a href="#results">Results</a>
+        <a href="#build">Build</a>
+        <button class="btn small" id="themeBtn" type="button" aria-label="Toggle theme">🌙 Theme</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <header class="hero">
+      <div class="hero-grid">
+        <div class="card">
+          <h1>Sequential FSM for 7‑Segment Digit Cycling</h1>
+          <p class="sub">
+            Designed and implemented a JK flip‑flop finite‑state machine (FSM) that repeatedly displays the digits of a student number on a 7‑segment display using BCD storage plus extra counter bits for repeated digits.
+          </p>
+
+          <div class="meta">
+            <span class="pill">JK flip‑flops</span>
+            <span class="pill">BCD + 7‑segment decoder</span>
+            <span class="pill">K‑maps + don’t‑cares</span>
+            <span class="pill">Multisim + breadboard</span>
+          </div>
+
+          <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap">
+            <a class="btn primary" href="#results">See results →</a>
+            <a class="btn" href="#build">Implementation notes</a>
+          </div>
+        </div>
+
+        <aside class="card">
+          <div class="section-title">
+            <h2 style="font-size:18px; margin:0">Project snapshot</h2>
+            <span class="hint">Edit these</span>
+          </div>
+          <div class="kpi">
+            <div class="row"><span>Digit sequence</span><b>400561020</b></div>
+            <div class="row"><span>State bits used</span><b>Q2–Q4 + C5–C6</b></div>
+            <div class="row"><span>Decoder</span><b>74LS48 / 4511</b></div>
+            <div class="row"><span>Clock</span><b>~5 Hz</b></div>
+          </div>
+          <p class="hint" style="margin:12px 0 0">
+            Tip: replace the sequence, chips, and frequency with your exact build.
+          </p>
+        </aside>
+      </div>
+    </header>
+
+    <section id="overview">
+      <div class="section-title">
+        <h2>Overview</h2>
+        <span class="hint">Problem, goal, and high‑level approach</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <p style="margin:0">
+            The goal was to create a sequential digital circuit that cycles through a specific digit sequence on a 7‑segment display.
+            Digits are stored in <b>binary‑coded decimal (BCD)</b> using flip‑flops, then converted to segment outputs with a BCD‑to‑7‑segment decoder.
+            Because BCD alone can’t distinguish repeated digits, additional internal bits track which occurrence is being displayed, making each step a unique FSM state.
+          </p>
+          <ul class="clean">
+            <li>Define the FSM states (BCD bits + counter bits)</li>
+            <li>Build present/next state table</li>
+            <li>Use JK excitation table to derive required <code class="inline">J</code> and <code class="inline">K</code></li>
+            <li>Simplify each input with Karnaugh maps (use don’t‑cares)</li>
+            <li>Validate in Multisim, then build on hardware</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 6px; font-size:15px">Key design choices</h3>
+          <ul class="clean" style="margin-top:6px">
+            <li>Drop unused BCD bit if not required (e.g., tie <code class="inline">Q1</code> low when digits ≤ 7)</li>
+            <li>Reuse common sub‑expressions to reduce chip count (e.g., implement <code class="inline">T1 = Q3·C6</code> once)</li>
+            <li>Prefer the expression form (SOP vs POS) with fewer gates</li>
+            <li>Add async reset/set so the circuit always starts at the first digit</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="section-title">
+        <h2>Method</h2>
+        <span class="hint">From excitation table → K‑maps → minimized logic</span>
+      </div>
+      <div class="card">
+        <div class="timeline">
+          <div class="step">
+            <div class="num">1</div>
+            <div>
+              <h3>State definition</h3>
+              <p>Encode each digit in BCD (<code class="inline">Q1–Q4</code>) and include extra counter bits (<code class="inline">C5–C6</code>) to make repeated digits distinct states.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">2</div>
+            <div>
+              <h3>Present/next state table</h3>
+              <p>List every valid transition in sequence (only reachable states). Mark all unused combinations as don’t‑care (<code class="inline">X</code>) for minimization.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">3</div>
+            <div>
+              <h3>JK excitation mapping</h3>
+              <p>For each flip‑flop bit, use the JK excitation table to determine required <code class="inline">J</code> and <code class="inline">K</code> (or <code class="inline">\u00ACK</code>) inputs per transition.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">4</div>
+            <div>
+              <h3>Karnaugh map simplification</h3>
+              <p>Build one K‑map per input and group 1s using don’t‑cares to derive minimal Boolean expressions (SOP/POS). Choose the lowest‑gate implementation.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="num">5</div>
+            <div>
+              <h3>Simulation + hardware</h3>
+              <p>Implement the logic in Multisim, confirm sequence timing, then wire the final circuit using flip‑flop ICs, gates, and the BCD‑to‑7‑segment decoder.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="logic">
+      <div class="section-title">
+        <h2>Logic Highlights</h2>
+        <span class="hint">What got simplified and why it matters</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 6px; font-size:15px">Don’t‑cares = fewer gates</h3>
+          <p style="margin:0">
+            Unreachable states were labeled <code class="inline">X</code> in the excitation table and K‑maps.
+            During grouping, those Xs were treated as either 0 or 1 to form bigger groups.
+            This collapsed some inputs to constants (so they could be tied to ground/power) and reduced product terms for others.
+          </p>
+          <ul class="clean">
+            <li>Some <code class="inline">K</code> inputs can become constant 0 → remove whole logic blocks</li>
+            <li>Some inputs depend on a single variable (e.g., only <code class="inline">Q4</code>)</li>
+            <li>Common terms can be computed once and reused</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 6px; font-size:15px">Reset / initial state</h3>
+          <p style="margin:0">
+            The circuit must always start at the first digit.
+            Use asynchronous set/reset pins to force the initial BCD + counter combination (e.g., set one bit high and clear the rest).
+            After releasing the button, the FSM resumes normal clocked transitions.
+          </p>
+          <p class="hint" style="margin:10px 0 0">Replace the bullet values below with your exact initial-state forcing.</p>
+          <ul class="clean">
+            <li>Set: <code class="inline">Q2</code> → 1</li>
+            <li>Reset: <code class="inline">Q3, Q4, C5, C6</code> → 0</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="section-title">
+        <h2>Results</h2>
+        <span class="hint">Screenshots + what the outputs show</span>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-size:15px">Multisim schematic</h3>
+          <div class="figure">
+            <b>Add your schematic image</b>
+            <small>
+              Replace this box with an <code class="inline">&lt;img&gt;</code> of your Multisim circuit (or a photo of your breadboard).
+              Suggested filename: <code class="inline">schematic.png</code>
+            </small>
+          </div>
+          <p class="hint" style="margin:10px 0 0">In your write‑up: describe layout, labeling, clock distribution, and reset wiring.</p>
+        </div>
+
+        <div class="card">
+          <h3 style="margin:0 0 8px; font-size:15px">Timing diagram</h3>
+          <div class="figure">
+            <b>Add your timing diagram</b>
+            <small>
+              Include Q2/Q3/Q4/C5/C6 waveforms that demonstrate the digit cycle.
+              Suggested filename: <code class="inline">timing.png</code>
+            </small>
+          </div>
+          <p class="hint" style="margin:10px 0 0">Explain how counter bits toggle on repeated digits while BCD changes only when the digit changes.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="section-title" style="margin-bottom:6px">
+          <h2 style="font-size:18px">What worked (quick summary)</h2>
+          <span class="hint">Make it yours</span>
+        </div>
+        <ul class="clean">
+          <li>The FSM cycles through the full digit sequence and returns to the start state.</li>
+          <li>Repeated digits are handled using extra state bits (counter).</li>
+          <li>Minimized Boolean expressions reduce wiring complexity and total IC count.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="build">
+      <div class="section-title">
+        <h2>Build Notes</h2>
+        <span class="hint">Parts list, wiring tips, and lessons learned</span>
+      </div>
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="margin:0 0 6px; font-size:15px">Parts</h3>
+          <ul class="clean">
+            <li>JK flip‑flop ICs (e.g., 74HC109 or equivalent)</li>
+            <li>AND/OR/NOT gates (or NAND-only, if you choose)</li>
+            <li>BCD‑to‑7‑segment decoder (e.g., 74LS48 / CD4511)</li>
+            <li>7‑segment display + current limiting resistors</li>
+            <li>Clock source (function generator or 555 timer)</li>
+            <li>Pushbutton + debounce (optional) for reset</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="margin:0 0 6px; font-size:15px">Lessons learned</h3>
+          <ul class="clean">
+            <li>Label every wire/net early (makes debugging 10× faster).</li>
+            <li>Implement shared terms once (less duplication, cleaner layout).</li>
+            <li>Check reset polarity and decoder type (common anode vs cathode).</li>
+            <li>Slow the clock (~1–5 Hz) while testing so digits are readable.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <h3 style="margin:0 0 6px; font-size:15px">Optional: add a short demo clip</h3>
+        <p style="margin:0; color:color-mix(in srgb, var(--text) 78%, var(--muted));">
+          If you recorded a demo, embed it here (YouTube/Drive) or link it as a button.
+        </p>
+        <div style="margin-top:10px; display:flex; gap:10px; flex-wrap:wrap">
+          <a class="btn" href="#" onclick="alert('Replace this with your demo link!'); return false;">▶ Demo link</a>
+          <a class="btn" href="#" onclick="alert('Replace this with your report PDF link!'); return false;">📄 Report PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-row">
+        <div>© <span id="year"></span> • Your Name • Digital Design Portfolio</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap">
+          <a class="pill" href="#overview">Back to top</a>
+          <a class="pill" href="mailto:you@example.com">Contact</a>
+          <a class="pill" href="#" onclick="navigator.clipboard.writeText(window.location.href).then(()=>alert('Link copied!')); return false;">Copy page link</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Theme toggle (saved in localStorage)
+    const key = 'portfolio_theme';
+    const btn = document.getElementById('themeBtn');
+    const root = document.documentElement;
+
+    function applyTheme(t){
+      if(t === 'light'){
+        root.setAttribute('data-theme','light');
+        btn.textContent = '☀️ Theme';
+      } else {
+        root.removeAttribute('data-theme');
+        btn.textContent = '🌙 Theme';
+      }
+    }
+
+    const saved = localStorage.getItem(key);
+    if(saved) applyTheme(saved);
+
+    btn.addEventListener('click', () => {
+      const now = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      localStorage.setItem(key, now);
+      applyTheme(now);
+    });
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if(!id || id === '#') return;
+        const el = document.querySelector(id);
+        if(!el) return;
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
