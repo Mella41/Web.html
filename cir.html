@@ -7,18 +7,18 @@
   <meta name="description" content="Portfolio site for a sequential digital circuit design project: JK flip-flop FSM that cycles through a custom digit sequence on a 7‑segment display." />
   <style>
     :root{
-      --bg:#0b1020; --card:#111a33; --muted:#98a2b3; --text:#e6e9ef;
-      --brand:#7c5cff; --brand2:#22c55e; --line:rgba(255,255,255,.10);
+      --bg:#0b1020; --card:#141b2d; --muted:#98a2b3; --text:#e6e9ef;
+      --brand:#c29b6c; --brand2:#8f6f47; --line:rgba(255,255,255,.10);
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius:18px;
-      --max: 1040px;
+      --max: 1180px;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     }
     [data-theme="light"]{
-      --bg:#f6f7fb; --card:#ffffff; --muted:#475467; --text:#0f172a;
-      --brand:#5b5cff; --brand2:#16a34a; --line:rgba(15,23,42,.12);
-      --shadow: 0 10px 26px rgba(2,6,23,.12);
+      --bg:#f3e8d4; --card:#efe1c7; --muted:#7a6a52; --text:#2e2418;
+      --brand:#b28a5a; --brand2:#8f6f47; --line:rgba(89,68,43,.18);
+      --shadow:none;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -27,13 +27,13 @@
       font-family:var(--sans);
       color:var(--text);
       background:
-        radial-gradient(900px 500px at 10% -10%, rgba(124,92,255,.35), transparent 60%),
-        radial-gradient(900px 520px at 90% 0%, rgba(34,197,94,.22), transparent 55%),
+        radial-gradient(900px 500px at 10% -10%, color-mix(in srgb, var(--brand) 32%, transparent), transparent 60%),
+        radial-gradient(900px 520px at 90% 0%, color-mix(in srgb, var(--brand2) 24%, transparent), transparent 55%),
         var(--bg);
       line-height:1.6;
     }
     a{color:inherit; text-decoration:none}
-    .wrap{max-width:var(--max); margin:0 auto; padding:22px 18px 90px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:34px 28px 110px}
 
     /* Top nav */
     .nav{
@@ -42,7 +42,7 @@
       background: color-mix(in srgb, var(--bg) 78%, transparent);
       border-bottom:1px solid var(--line);
     }
-    .nav-inner{max-width:var(--max); margin:0 auto; padding:12px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px}
+    .nav-inner{max-width:var(--max); margin:0 auto; padding:14px 28px; display:flex; align-items:center; justify-content:space-between; gap:14px}
     .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
     .dot{width:10px;height:10px;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2)); box-shadow:0 0 0 6px color-mix(in srgb, var(--brand) 20%, transparent)}
     .links{display:flex; flex-wrap:wrap; gap:12px; align-items:center}
@@ -65,16 +65,16 @@
     .btn.primary{border-color: color-mix(in srgb, var(--brand) 55%, var(--line)); background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 40%, transparent), color-mix(in srgb, var(--brand2) 25%, transparent));}
 
     /* Hero */
-    header.hero{padding:34px 0 10px}
-    .hero-grid{display:grid; grid-template-columns: 1.25fr .75fr; gap:16px}
+    header.hero{padding:48px 0 20px}
+    .hero-grid{display:grid; grid-template-columns: 1.35fr .65fr; gap:34px}
     @media (max-width:900px){.hero-grid{grid-template-columns:1fr;}}
 
     .card{
-      background: color-mix(in srgb, var(--card) 92%, transparent);
-      border:1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding:18px;
+      background: transparent;
+      border:none;
+      border-radius:0;
+      box-shadow:none;
+      padding:2px 0;
     }
 
     h1{margin:0; font-size: clamp(30px, 4vw, 44px); line-height:1.1; letter-spacing:-.02em}
@@ -82,17 +82,17 @@
     .meta{margin-top:14px; display:flex; flex-wrap:wrap; gap:10px}
     .pill{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--line); color: color-mix(in srgb, var(--text) 80%, var(--muted)); background: color-mix(in srgb, var(--bg) 60%, transparent)}
 
-    .kpi{display:grid; gap:10px}
-    .kpi .row{display:flex; justify-content:space-between; gap:12px; padding:10px 12px; border-radius:14px; border:1px solid var(--line); background: color-mix(in srgb, var(--bg) 62%, transparent)}
+    .kpi{display:grid; gap:14px}
+    .kpi .row{display:flex; justify-content:space-between; gap:12px; padding:8px 0; border-bottom:1px solid var(--line); background: transparent}
     .kpi .row b{font-family:var(--mono); font-weight:700}
     .kpi .row span{color:color-mix(in srgb, var(--text) 70%, var(--muted)); font-size:13px}
 
     /* Sections */
-    section{padding:18px 0}
+    section{padding:36px 0}
     .section-title{display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin:0 0 10px}
     h2{margin:0; font-size:22px; letter-spacing:-.01em}
 
-    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:38px}
     @media (max-width:900px){.grid-2{grid-template-columns:1fr}}
 
     ul.clean{margin:10px 0 0; padding-left:18px}
@@ -100,9 +100,9 @@
 
     /* Figure placeholders */
     .figure{
-      border-radius: var(--radius);
-      border:1px dashed color-mix(in srgb, var(--line) 90%, transparent);
-      background: linear-gradient(180deg, color-mix(in srgb, var(--bg) 65%, transparent), transparent);
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: color-mix(in srgb, var(--card) 40%, transparent);
       padding:16px;
       min-height: 220px;
       display:flex;
@@ -117,8 +117,8 @@
     .figure small{max-width:520px}
 
     /* Timeline */
-    .timeline{display:grid; gap:10px; margin-top:10px}
-    .step{display:grid; grid-template-columns: 34px 1fr; gap:12px; padding:12px; border-radius:16px; border:1px solid var(--line); background: color-mix(in srgb, var(--bg) 60%, transparent)}
+    .timeline{display:grid; gap:16px; margin-top:14px}
+    .step{display:grid; grid-template-columns: 34px 1fr; gap:14px; padding:0; border:none; background: transparent}
     .num{width:34px; height:34px; border-radius:12px; display:grid; place-items:center; font-weight:800; background: linear-gradient(135deg, color-mix(in srgb, var(--brand) 30%, transparent), color-mix(in srgb, var(--brand2) 18%, transparent)); border:1px solid color-mix(in srgb, var(--line) 70%, transparent)}
     .step p{margin:0; color: color-mix(in srgb, var(--text) 78%, var(--muted));}
     .step h3{margin:0 0 4px; font-size:15px}
@@ -385,7 +385,7 @@
 
     <footer>
       <div class="footer-row">
-        <div>© <span id="year"></span> • Your Name • Digital Design Portfolio</div>
+        <div>© <span id="year"></span> • Basma • Digital Design Portfolio</div>
         <div style="display:flex; gap:10px; flex-wrap:wrap">
           <a class="pill" href="#overview">Back to top</a>
           <a class="pill" href="mailto:you@example.com">Contact</a>
@@ -412,7 +412,11 @@
     }
 
     const saved = localStorage.getItem(key);
-    if(saved) applyTheme(saved);
+    if(saved){
+      applyTheme(saved);
+    } else {
+      applyTheme('light');
+    }
 
     btn.addEventListener('click', () => {
       const now = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
